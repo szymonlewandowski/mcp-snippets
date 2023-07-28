@@ -14,7 +14,7 @@ MCP Event API Sender Snippet is a 75-line code that allows you to easily send as
 4. Add your actions to the `actions` array.
 5. Hit the *Send Event* button.
 
-### Setting dataset parameters to variables and array
+### Inserting dataset parameters and actions
 
 `userid` - set your userid value, this value will show up as the user id in the event details
 
