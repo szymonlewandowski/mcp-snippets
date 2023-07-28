@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- 
+    MCP EVENT API SENDER SNIPPET v. 1.0
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <title>MCP Event Sender</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Szymon Lewandowski ©️ szymonlewandowski.pl">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <main role="main" class="container text-break" style="max-width: 600px">
+            <h2 class="mt-5">Currently sends data to:</h2>
+            <p id="url"></p>
+            <button id="submit" class="btn-lg btn-primary btn-block mt-1">Send Events</button>
+            <h2 class="mt-5">Actions to send:</h2>
+            <div id="actionslist"></div>
+        </main>
+    </body>
+</html>
+<script>
+    let userid = "youruserid", // set your userid here (e.g. "test")
+    account = "youraccount",  // set your MCP account name here
+    instance = "yourinstance", // set your MCP instance name here
+    dataset = "yourdataset", // set your instance name here
+    url = `https://${account}.${instance}.evergage.com/api2/event/${dataset}`, // Event API URL generated automatically
+    actions = [
+        "action 1",
+        "action 2",
+        "action 3",
+        "action 4",
+        "action 5",
+        "action 6",
+        "action 7",
+        "action 8",
+        "action 9",
+        "action 10",
+    ]; // add your MCP action names here
+
+    // Viewing current API endpoint URL
+    el = document.createElement("div")
+    el.innerHTML = `https://<b>${account}</b>.<b>${instance}</b>.evergage.com/api2/event/<b>${dataset}</b>`
+    document.getElementById('url').appendChild(el)
+
+    // Viewing all of your MCP actions
+    actions.forEach(function(action) {
+        el = document.createElement("div")
+        el.innerHTML = `<li><i>${action}</i>`
+        document.getElementById('actionslist').appendChild(el)
+    })
+
+    // Button click handling
+    const sendEventsButton = document.getElementById("submit");
+    sendEventsButton.addEventListener("click", (e) => sendEvents(e));
+
+    // Action sending function
+    function sendEvents(e) {
+        var request = new XMLHttpRequest(); // creating new XMLHttpRequest
+        actions.forEach(function(action) {
+            var payload = 'event=' + btoa(JSON.stringify({
+                "action": action,
+                "user": {
+                    "id": userid
+                }
+            })) // create payload with action name and userid
+            request.open("POST", url, true); // opening POST API call
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // setting header, do not use 'application/json' due to CORS policy
+            console.log("Sending eventL: " + payload) // checking payload body
+            request.send(payload); // sending payload
+        })
+    }
+</script>
