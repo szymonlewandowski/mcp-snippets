@@ -4,6 +4,8 @@ Usually, events in Marketing Cloud Personalization are triggered by the user and
 
 Salesforce Event API provides an endpoint for sending bulks of actions directly to your dataset, with all the details that can be added to the event, such as user ID, catalog details, etc.
 
+![MCP Event API Sender Snippet UI](https://www.szymonlewandowski.pl/static/images/articles/marketing-cloud-personalization-send-events-using-sendevent-or-api/mcp-event-api-sender-snippet-ui.jpg)
+
 ## How to run MCP Event API Sender Snippet
 
 MCP Event API Sender Snippet is a 75-line code that allows you to easily send as many events as you want to your dataset. All you need to do is download the .html file, set parameters, and hit the button!
